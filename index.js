@@ -1,0 +1,26 @@
+
+const workshopDate = new Date(2026, 2, 2, 9, 0, 0).getTime();
+
+const countdown = setInterval(function () {
+
+  const now = new Date().getTime();
+  const distance = workshopDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("minutes").innerHTML = minutes;
+  document.getElementById("seconds").innerHTML = seconds;
+
+  // When event starts
+  if (distance < 0) {
+    clearInterval(countdown);
+    document.querySelector(".countdown").innerHTML = 
+      "<h2>Workshop Started!</h2>";
+  }
+
+}, 1000);
